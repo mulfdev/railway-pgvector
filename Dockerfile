@@ -1,4 +1,4 @@
-FROM ankane/pgvector:v0.4.4
+FROM pgvector/pgvector:0.8.0-pg17
 
 ARG POSTGRES_PASSWORD POSTGRES_USER POSTGRES_DB
 
