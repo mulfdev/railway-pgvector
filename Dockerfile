@@ -7,3 +7,4 @@ ENV POSTGRES_USER=$POSTGRES_USER
 ENV POSTGRES_DB=$POSTGRES_DB
 
 COPY ./add-vector-extension.sql /docker-entrypoint-initdb.d/
+EXPOSE 5432
