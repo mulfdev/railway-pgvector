@@ -1,12 +1,20 @@
+
 FROM pgvector/pgvector:0.8.0-pg17
 
-# Set environment variables
+# Define build-time arguments with default values
+ARG POSTGRES_USER=postgres
+ARG POSTGRES_PASSWORD=postgres
+ARG POSTGRES_DB=postgres
+
+# Set environment variables using the ARG values
+ENV POSTGRES_USER=${POSTGRES_USER}
+ENV POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+ENV POSTGRES_DB=${POSTGRES_DB}
 ENV POSTGRES_HOST_AUTH_METHOD=trust
 ENV PGDATA=/var/lib/postgresql/data/pgdata
 
-# Create the pgdata directory and set ownership
-RUN mkdir -p /var/lib/postgresql/data/pgdata && \
-    chown -R postgres:postgres /var/lib/postgresql/data
+# Create the PGDATA directory and set appropriate permissions
+RUN mkdir -p ${PGDATA} && chown -R postgres:postgres /var/lib/postgresql/data
 
 # Copy initialization script
 COPY ./add-vector-extension.sql /docker-entrypoint-initdb.d/
