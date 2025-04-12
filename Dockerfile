@@ -1,8 +1,5 @@
 FROM pgvector/pgvector:0.8.0-pg17
 
-# Declare the volume for PostgreSQL data
-VOLUME ["/var/lib/postgresql/data"]
-
 # Environment variables
 ARG POSTGRES_PASSWORD POSTGRES_USER POSTGRES_DB
 ENV POSTGRES_PASSWORD=$POSTGRES_PASSWORD
